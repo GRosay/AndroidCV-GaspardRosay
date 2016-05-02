@@ -18,17 +18,19 @@
     <!-- Expérience professionnel -->
     <string name="string_experience">Expérience</string>
 
-    <string name="string_poste_duc">Développeur web - Ducommun SA</string>
-    <string name="string_poste_duc_dates">Juillet 2013 - Aujourd\'hui</string>
-    <string name="string_poste_duc_descr">Développer et maintenir différents sites et applications web\nSupport 1er et 2ème niveau\nRefondre une partie de l\'intranet</string>
+    <string name="string_poste_duc">Informaticien</string>
+    <string name="string_entreprise_duc">Ducommun SA</string>
+    <string name="string_poste_duc_dates">Juillet 2013 - Mai 2016 (2 ans, 11 mois)</string>
+    <string name="string_poste_duc_descr">Développement de sites et applications Web (full-stack) pour l\'interne et l\'externe à l\'aide des technologies PHP, Javascript, HTML, ...\n\nMaintenance du parc informatique (OS X, Windows Server 2003-2012)\n\nSupport 1er et 2ème niveau au sein de la société. </string>
 
-    <string name="string_poste_duc_stag">Stagiaire informaticien - Ducommun SA</string>
-    <string name="string_poste_duc_stag_dates">Août 2012 - Janvier 2013</string>
-    <string name="string_poste_duc_stag_descr">Développer et maintenir différents sites et applications web\nSupport 1er et 2ème niveau\nCréer un système de "web-to-print"</string>
+    <string name="string_poste_duc_stag">Stagiaire informaticien</string>
+    <string name="string_poste_duc_stag_dates">Août 2012 - Janvier 2013 (5 mois)</string>
+    <string name="string_poste_duc_stag_descr">Développement, mise à jour et maintenance de divers sites et applications web (PHP, HTML, Javascript,...)\n\nSupport de premier et deuxième niveau au sein de l\'entreprise. </string>
 
-    <string name="string_poste_fastnet_stag">Stagiaire développeur web - Fastnet SA</string>
-    <string name="string_poste_fastnet_stag_dates">Janvier 2012 - Août 2012</string>
-    <string name="string_poste_fastnet_stag_descr">Développer, mettre à jour et maintenir différents sites et applications web\nCréer une interface de gestion des bulletins de notes pour une école</string>
+    <string name="string_poste_fastnet_stag">Stagiaire développeur web</string>
+    <string name="string_poste_fastnet_entreprise">Fastnet SA</string>
+    <string name="string_poste_fastnet_stag_dates">Janvier 2012 - Août 2012 (7 mois)</string>
+    <string name="string_poste_fastnet_stag_descr">Développement, maintenance et mise à jour de divers sites internet statiques et dynamiques. (PHP, HTML, Javascript,...)\n\nDéveloppement d\’une application complexe de gestion de notes pour une école, interface entièrement dynamique (jQuery, jQuery UI) </string>
 
     <string name="action_settings">Settings</string>
 </resources>

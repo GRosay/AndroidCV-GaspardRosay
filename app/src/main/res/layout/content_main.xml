@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
@@ -19,18 +20,28 @@
 
         <TextView
             android:id="@+id/profile_title"
-            style="@style/GlobalTitle"
+            style="@style/SubTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:capitalize="characters"
             android:text="@string/global_title" />
 
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="4dp">
+
         <LinearLayout
             android:id="@+id/GlobalInformations"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
+
 
             <LinearLayout
                 android:id="@+id/PrincipalLayout"
@@ -172,6 +183,8 @@
             </LinearLayout>
 
         </LinearLayout>
+        </android.support.v7.widget.CardView>
+
 
         <TextView
             android:id="@+id/ObjectiveTitle"
@@ -182,15 +195,31 @@
             android:capitalize="characters"
             android:text="@string/string_objectivetitle" />
 
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="4dp">
+            <TextView
+                android:id="@+id/objective"
+                style="@style/IntroText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:capitalize="characters"
+                android:text="@string/string_intro" />
+        </android.support.v7.widget.CardView>
+
         <TextView
-            android:id="@+id/objective"
-            style="@style/IntroText"
+            android:id="@+id/ExperiencesTitle"
+            style="@style/SubTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:capitalize="characters"
-            android:text="@string/string_intro" />
-
+            android:text="@string/string_experience" />
 
 
         <LinearLayout
@@ -199,99 +228,208 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/poste_ducommun"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/poste_ducommun_title"
-                    style="@style/SubTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:capitalize="characters"
-                    android:text="@string/string_poste_duc" />
-                <TextView
-                    android:id="@+id/poste_ducommun_dates"
-                    style="@style/IntroText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:capitalize="characters"
-                    android:text="@string/string_poste_duc_dates" />
-                <TextView
-                    android:id="@+id/poste_ducommun_descr"
-                    style="@style/IntroText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:capitalize="characters"
-                    android:text="@string/string_poste_duc_descr" />
-            </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/poste_ducommun_stag"
-                android:layout_width="match_parent"
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/poste_ducommun_stag_title"
-                    style="@style/SubTitle"
-                    android:layout_width="wrap_content"
+                android:layout_marginBottom="5dp"
+                card_view:cardCornerRadius="4dp">
+                <LinearLayout
+                    android:id="@+id/poste_ducommun"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:capitalize="characters"
-                    android:text="@string/string_poste_duc_stag" />
-                <TextView
-                    android:id="@+id/poste_ducommun_stag_dates"
-                    style="@style/IntroText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:capitalize="characters"
-                    android:text="@string/string_poste_duc_stag_dates" />
-                <TextView
-                    android:id="@+id/poste_ducommun_stag_descr"
-                    style="@style/IntroText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:capitalize="characters"
-                    android:text="@string/string_poste_duc_stag_descr" />
-            </LinearLayout>
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/poste_ducommun_title"
+                        style="@style/JobTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
 
-            <LinearLayout
-                android:id="@+id/poste_fastnet_stag"
-                android:layout_width="match_parent"
+                        android:text="@string/string_poste_duc" />
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/JobIcons"
+                            android:src="@drawable/faindustry" />
+
+                        <TextView
+                            style="@style/IntroText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/text_margin"
+                            android:capitalize="characters"
+                            android:text="@string/string_entreprise_duc" />
+                    </LinearLayout>
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/JobIcons"
+                            android:src="@drawable/facalendar" />
+
+                        <TextView
+                            style="@style/IntroText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/text_margin"
+                            android:capitalize="characters"
+                            android:text="@string/string_poste_duc_dates" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/poste_ducommun_descr"
+                        style="@style/IntroText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+                        android:capitalize="characters"
+                        android:text="@string/string_poste_duc_descr" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:layout_width="350dp"
+                android:layout_marginBottom="5dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/poste_fastnet_stag_title"
-                    style="@style/SubTitle"
-                    android:layout_width="wrap_content"
+                card_view:cardCornerRadius="4dp">
+                <LinearLayout
+                    android:id="@+id/poste_ducommun_stage"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:capitalize="characters"
-                    android:text="@string/string_poste_fastnet_stag" />
-                <TextView
-                    android:id="@+id/poste_fastnet_stag_dates"
-                    style="@style/IntroText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:capitalize="characters"
-                    android:text="@string/string_poste_fastnet_stag_dates" />
-                <TextView
-                    android:id="@+id/poste_fastnet_stag_descr"
-                    style="@style/IntroText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:capitalize="characters"
-                    android:text="@string/string_poste_fastnet_stag_descr" />
-            </LinearLayout>
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/poste_ducommun_stage_title"
+                        style="@style/JobTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
 
+                        android:text="@string/string_poste_duc_stag" />
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/JobIcons"
+                            android:src="@drawable/faindustry" />
+
+                        <TextView
+                            style="@style/IntroText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/text_margin"
+                            android:capitalize="characters"
+                            android:text="@string/string_entreprise_duc" />
+                    </LinearLayout>
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/JobIcons"
+                            android:src="@drawable/facalendar" />
+
+                        <TextView
+                            style="@style/IntroText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/text_margin"
+                            android:capitalize="characters"
+                            android:text="@string/string_poste_duc_stag_dates" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/poste_ducommun_stage_descr"
+                        style="@style/IntroText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+                        android:capitalize="characters"
+                        android:text="@string/string_poste_duc_stag_descr" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                card_view:cardCornerRadius="4dp">
+                <LinearLayout
+                    android:id="@+id/poste_fastnet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/poste_fastnet_title"
+                        style="@style/JobTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+
+                        android:text="@string/string_poste_fastnet_stag" />
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/JobIcons"
+                            android:src="@drawable/faindustry" />
+
+                        <TextView
+                            style="@style/IntroText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/text_margin"
+                            android:capitalize="characters"
+                            android:text="@string/string_poste_fastnet_entreprise" />
+                    </LinearLayout>
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/JobIcons"
+                            android:src="@drawable/facalendar" />
+
+                        <TextView
+                            style="@style/IntroText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/text_margin"
+                            android:capitalize="characters"
+                            android:text="@string/string_poste_fastnet_stag_dates" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/poste_fastnet_descr"
+                        style="@style/IntroText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+                        android:capitalize="characters"
+                        android:text="@string/string_poste_fastnet_stag_descr" />
+
+                    </LinearLayout>
+            </android.support.v7.widget.CardView>
         </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
