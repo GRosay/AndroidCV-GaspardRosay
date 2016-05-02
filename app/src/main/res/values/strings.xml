@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Rosay Gaspard</string>
+
+    <string name="global_title">Développeur web</string>
+
+    <!-- Objectifs -->
+    <string name="string_objectivetitle">Objectif</string>
+    <string name="string_intro">Occuper un poste de développeur web au sein d’une entreprise fortement active sur le marché. </string>
+
+    <!-- Informations générales -->
+    <string name="string_adresse">Route des Brigands 15\n1084 Carrouge VD</string>
+    <string name="string_mail">gaspard@rosay.ch</string>
+    <string name="string_phone">+41 79 138 46 72</string>
+    <string name="string_car">Permis B\nVéhicule privé</string>
+    <string name="string_birthdate">30.12.1992</string>
+    <string name="string_military">Libéré du service militaire</string>
+
+    <!-- Expérience professionnel -->
+    <string name="string_experience">Expérience</string>
+
+    <string name="string_poste_duc">Développeur web - Ducommun SA</string>
+    <string name="string_poste_duc_dates">Juillet 2013 - Aujourd\'hui</string>
+    <string name="string_poste_duc_descr">Développer et maintenir différents sites et applications web\nSupport 1er et 2ème niveau\nRefondre une partie de l\'intranet</string>
+
+    <string name="string_poste_duc_stag">Stagiaire informaticien - Ducommun SA</string>
+    <string name="string_poste_duc_stag_dates">Août 2012 - Janvier 2013</string>
+    <string name="string_poste_duc_stag_descr">Développer et maintenir différents sites et applications web\nSupport 1er et 2ème niveau\nCréer un système de "web-to-print"</string>
+
+    <string name="string_poste_fastnet_stag">Stagiaire développeur web - Fastnet SA</string>
+    <string name="string_poste_fastnet_stag_dates">Janvier 2012 - Août 2012</string>
+    <string name="string_poste_fastnet_stag_descr">Développer, mettre à jour et maintenir différents sites et applications web\nCréer une interface de gestion des bulletins de notes pour une école</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

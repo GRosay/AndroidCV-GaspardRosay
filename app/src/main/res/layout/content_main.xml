@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profile_title"
+            style="@style/GlobalTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:capitalize="characters"
+            android:text="@string/global_title" />
+
+        <LinearLayout
+            android:id="@+id/GlobalInformations"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/PrincipalLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/adress_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/Icons"
+                        android:src="@drawable/fahome" />
+
+                    <TextView
+                        android:id="@+id/profile_adresse"
+                        style="@style/DetailsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+                        android:capitalize="characters"
+                        android:text="@string/string_adresse" />
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/mail_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/Icons"
+                        android:src="@drawable/famail" />
+
+                    <TextView
+                        android:id="@+id/profile_mail"
+                        style="@style/DetailsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+                        android:capitalize="characters"
+                        android:text="@string/string_mail" />
+
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/phone_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/Icons"
+                        android:src="@drawable/faphone" />
+
+                    <TextView
+                        android:id="@+id/profile_phone"
+                        style="@style/DetailsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+                        android:capitalize="characters"
+                        android:text="@string/string_phone" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/SecondaryLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/car_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/Icons"
+                        android:src="@drawable/facar" />
+
+                    <TextView
+                        android:id="@+id/profile_car"
+                        style="@style/DetailsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+                        android:capitalize="characters"
+                        android:text="@string/string_car" />
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/birthdate_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/Icons"
+                        android:src="@drawable/fabirthdate" />
+
+                    <TextView
+                        android:id="@+id/profile_birthdate"
+                        style="@style/DetailsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+                        android:capitalize="characters"
+                        android:text="@string/string_birthdate" />
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/military_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/Icons"
+                        android:src="@drawable/fashield" />
+
+                    <TextView
+                        android:id="@+id/profile_military"
+                        style="@style/DetailsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+                        android:capitalize="characters"
+                        android:text="@string/string_military" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ObjectiveTitle"
+            style="@style/SubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:capitalize="characters"
+            android:text="@string/string_objectivetitle" />
+
+        <TextView
+            android:id="@+id/objective"
+            style="@style/IntroText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:capitalize="characters"
+            android:text="@string/string_intro" />
+
+
+
+        <LinearLayout
+            android:id="@+id/Experiences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/poste_ducommun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/poste_ducommun_title"
+                    style="@style/SubTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:capitalize="characters"
+                    android:text="@string/string_poste_duc" />
+                <TextView
+                    android:id="@+id/poste_ducommun_dates"
+                    style="@style/IntroText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:capitalize="characters"
+                    android:text="@string/string_poste_duc_dates" />
+                <TextView
+                    android:id="@+id/poste_ducommun_descr"
+                    style="@style/IntroText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:capitalize="characters"
+                    android:text="@string/string_poste_duc_descr" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/poste_ducommun_stag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/poste_ducommun_stag_title"
+                    style="@style/SubTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:capitalize="characters"
+                    android:text="@string/string_poste_duc_stag" />
+                <TextView
+                    android:id="@+id/poste_ducommun_stag_dates"
+                    style="@style/IntroText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:capitalize="characters"
+                    android:text="@string/string_poste_duc_stag_dates" />
+                <TextView
+                    android:id="@+id/poste_ducommun_stag_descr"
+                    style="@style/IntroText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:capitalize="characters"
+                    android:text="@string/string_poste_duc_stag_descr" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/poste_fastnet_stag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/poste_fastnet_stag_title"
+                    style="@style/SubTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:capitalize="characters"
+                    android:text="@string/string_poste_fastnet_stag" />
+                <TextView
+                    android:id="@+id/poste_fastnet_stag_dates"
+                    style="@style/IntroText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:capitalize="characters"
+                    android:text="@string/string_poste_fastnet_stag_dates" />
+                <TextView
+                    android:id="@+id/poste_fastnet_stag_descr"
+                    style="@style/IntroText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:capitalize="characters"
+                    android:text="@string/string_poste_fastnet_stag_descr" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
