@@ -218,12 +218,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:capitalize="characters"
             android:text="@string/string_experience" />
 
 
         <LinearLayout
             android:id="@+id/Experiences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Dynamic content here -->
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/StudiesTitles"
+            style="@style/SubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/string_studies" />
+
+
+        <LinearLayout
+            android:id="@+id/Studies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

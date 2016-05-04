@@ -78,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         if(savedInstanceState == null){
-            new RequestTask(this).execute("http://gaspard-rosay.ch/cv/getExperience.php");
+            new RequestTask(this, "Experiences").execute("http://gaspard-rosay.ch/cv/getExperience.php");
+            new RequestTask(this, "Studies").execute("http://gaspard-rosay.ch/cv/getStudies.php");
         }
 
     }
@@ -106,8 +107,10 @@ public class MainActivity extends AppCompatActivity {
 
     class RequestTask extends AsyncTask<String, String, String> {
         private WeakReference<MainActivity> mActivity;
-        public RequestTask(MainActivity activity) {
+        private String sChoice;
+        public RequestTask(MainActivity activity, String Choice) {
             mActivity = new WeakReference<MainActivity>(activity);
+            sChoice = Choice;
         }
 
         @Override
@@ -143,16 +146,13 @@ public class MainActivity extends AppCompatActivity {
             // On traîte la valeure retournées par PHP
 
             try {
+
+                // Variables communes
                 LayoutInflater mInflater;
-
                 mInflater = LayoutInflater.from(getApplicationContext());
-
                 MainActivity activity = mActivity.get();
-
-                LinearLayout layout = (LinearLayout) activity.findViewById(R.id.Experiences);
-
+                LinearLayout layout;
                 View childView;
-                TextView tJobTitle, tJobSociety, tJobDates, tJobDescr;
                 String sDates, sDateFrom, sDateTo;
                 Long iDateFrom, iDateTo;
                 SimpleDateFormat f = new SimpleDateFormat("MMM yyyy");
@@ -165,51 +165,108 @@ public class MainActivity extends AppCompatActivity {
                 // On récupère le tableau "array"
                 JSONArray jsArray = jsonObject.getJSONArray("array");
 
-                // On parcours notre tableau json et on affiche les lignes
-                for(int i = 0; i < jsArray.length(); i++) {
-                    JSONObject tempJson = jsArray.getJSONObject(i);
+                switch (sChoice) {
+                    case "Experiences":
+                        layout = (LinearLayout) activity.findViewById(R.id.Experiences);
 
-                    sDateFrom = (String) tempJson.get("date_from");
-                    try {
-                        iDateFrom = Long.parseLong(sDateFrom);
-                    } catch(NumberFormatException nfe) {
-                        iDateFrom = 0L;
-                    }
-                    cDateFrom.setTimeInMillis(iDateFrom*1000);
-                    Log.d("DateFrom: ", ""+iDateFrom);
-                    sDateFrom = f.format(cDateFrom.getTime());
+                        TextView tJobTitle, tJobSociety, tJobDates, tJobDescr;
 
-                    sDateTo = (String) tempJson.get("date_to");
-                    try {
-                        iDateTo = Long.parseLong(sDateTo);
-                    } catch(NumberFormatException nfe) {
-                        iDateTo = 0L;
-                    }
-                    cDateTo.setTimeInMillis(iDateTo*1000);
-                    Log.d("DateTo: ", ""+iDateTo);
-                    sDateTo = f.format(cDateTo.getTime());
+                        // On parcours notre tableau json et on affiche les lignes
+                        for(int i = 0; i < jsArray.length(); i++) {
+                            JSONObject tempJson = jsArray.getJSONObject(i);
 
-                    sDates = "De " + sDateFrom + (iDateTo == 0 ? " à aujourd'hui" : " au " + sDateTo);
+                            sDateFrom = (String) tempJson.get("date_from");
+                            try {
+                                iDateFrom = Long.parseLong(sDateFrom);
+                            } catch(NumberFormatException nfe) {
+                                iDateFrom = 0L;
+                            }
+                            cDateFrom.setTimeInMillis(iDateFrom*1000);
+                            Log.d("DateFrom: ", ""+iDateFrom);
+                            sDateFrom = f.format(cDateFrom.getTime());
 
-                    // JobInfo
-                    childView = mInflater.inflate(R.layout.job_card, null);
+                            sDateTo = (String) tempJson.get("date_to");
+                            try {
+                                iDateTo = Long.parseLong(sDateTo);
+                            } catch(NumberFormatException nfe) {
+                                iDateTo = 0L;
+                            }
+                            cDateTo.setTimeInMillis(iDateTo*1000);
+                            Log.d("DateTo: ", ""+iDateTo);
+                            sDateTo = f.format(cDateTo.getTime());
 
-                    tJobTitle = (TextView) childView.findViewById(R.id.cardJobTitle);
-                    tJobTitle.setText((String) tempJson.get("title"));
+                            sDates = "De " + sDateFrom + (iDateTo == 0 ? " à aujourd'hui" : " au " + sDateTo);
 
-                    tJobSociety = (TextView) childView.findViewById(R.id.cardJobSociety);
-                    tJobSociety.setText((String) tempJson.get("society"));
+                            // JobInfo
+                            childView = mInflater.inflate(R.layout.job_card, null);
 
-                    tJobDates = (TextView) childView.findViewById(R.id.cardJobDates);
-                    tJobDates.setText(sDates);
+                            tJobTitle = (TextView) childView.findViewById(R.id.cardJobTitle);
+                            tJobTitle.setText((String) tempJson.get("title"));
 
-                    tJobDescr = (TextView) childView.findViewById(R.id.cardJobDescr);
-                    tJobDescr.setText((String) tempJson.get("description"));
+                            tJobSociety = (TextView) childView.findViewById(R.id.cardJobSociety);
+                            tJobSociety.setText((String) tempJson.get("society"));
 
-                    layout.addView(childView);
+                            tJobDates = (TextView) childView.findViewById(R.id.cardJobDates);
+                            tJobDates.setText(sDates);
 
+                            tJobDescr = (TextView) childView.findViewById(R.id.cardJobDescr);
+                            tJobDescr.setText((String) tempJson.get("description"));
+
+                            layout.addView(childView);
+
+                        }
+                        break;
+                    case "Studies":
+                        layout = (LinearLayout) activity.findViewById(R.id.Studies);
+                        TextView tStudiesDiploma, tStudiesSchool, tSudiesDates, tStudiesDescr;
+
+                        for (int i = 0; i < jsArray.length(); i++) {
+                            JSONObject tempJson = jsArray.getJSONObject(i);
+
+                            sDateFrom = (String) tempJson.get("date_from");
+                            try {
+                                iDateFrom = Long.parseLong(sDateFrom);
+                            } catch (NumberFormatException nfe) {
+                                iDateFrom = 0L;
+                            }
+                            cDateFrom.setTimeInMillis(iDateFrom * 1000);
+                            Log.d("DateFrom: ", "" + iDateFrom);
+                            sDateFrom = f.format(cDateFrom.getTime());
+
+                            sDateTo = (String) tempJson.get("date_to");
+                            try {
+                                iDateTo = Long.parseLong(sDateTo);
+                            } catch (NumberFormatException nfe) {
+                                iDateTo = 0L;
+                            }
+                            cDateTo.setTimeInMillis(iDateTo * 1000);
+                            Log.d("DateTo: ", "" + iDateTo);
+                            sDateTo = f.format(cDateTo.getTime());
+
+                            sDates = "De " + sDateFrom + (iDateTo == 0 ? " à aujourd'hui" : " au " + sDateTo);
+
+                            // JobInfo
+                            childView = mInflater.inflate(R.layout.studies_card, null);
+
+                            tStudiesDiploma = (TextView) childView.findViewById(R.id.cardStudiesTitle);
+                            tStudiesDiploma.setText((String) tempJson.get("diploma"));
+
+                            tStudiesSchool = (TextView) childView.findViewById(R.id.cardStudiesSchool);
+                            tStudiesSchool.setText((String) tempJson.get("school"));
+
+                            tSudiesDates = (TextView) childView.findViewById(R.id.cardStudiesDates);
+                            tSudiesDates.setText(sDates);
+
+                            tStudiesDescr = (TextView) childView.findViewById(R.id.cardStudiesDescr);
+                            tStudiesDescr.setText((String) tempJson.get("description"));
+
+                            layout.addView(childView);
+
+                        }
+                        break;
+                    default:
+                        break;
                 }
-
 
             } catch (JSONException e) {
                 //En cas d'erreur...
