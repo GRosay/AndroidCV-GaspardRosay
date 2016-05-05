@@ -1,6 +1,9 @@
 package ch.gaspard_rosay.rosaygaspard;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -77,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        if(savedInstanceState == null){
+        boolean bNetwork = isNetworkAvailable();
+        if(!bNetwork){
+
+        }
+        else if(savedInstanceState == null){
             new RequestTask(this, "Experiences").execute("http://gaspard-rosay.ch/cv/getExperience.php");
             new RequestTask(this, "Studies").execute("http://gaspard-rosay.ch/cv/getStudies.php");
         }
@@ -103,6 +110,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     class RequestTask extends AsyncTask<String, String, String> {
