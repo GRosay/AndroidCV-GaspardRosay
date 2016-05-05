@@ -1,4 +1,4 @@
-# AndroidCV-GaspardRosay
+# CV-GaspardRosay (Application Android)
 
 Cette application a pour but de promouvoir mes compétences de développeur en visant directement les recruteurs.
 
@@ -16,4 +16,5 @@ En parallèle de mes études, j'ai eu l'occasion de me former de manière autodi
 # ToDo
 * Version anglaise
 * Traductions des textes (Google Play, GitHub, ...)
-* Publication en Production
+* Passage en Production
+* Lien sur le CV papier
