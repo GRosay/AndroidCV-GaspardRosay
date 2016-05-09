@@ -2,6 +2,7 @@ package ch.gaspard_rosay.rosaygaspard;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -82,9 +83,18 @@ public class MainActivity extends AppCompatActivity {
         });
         boolean bNetwork = isNetworkAvailable();
         if(!bNetwork){
+            Snackbar snackbar = Snackbar
+                    .make(findViewById(R.id.main_layout), "Aucune connexion réseau disponible!", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("", null);
 
+            snackbar.show();
         }
         else if(savedInstanceState == null){
+            Snackbar snackbar = Snackbar
+                    .make(findViewById(R.id.main_layout), "Mise à jour...", Snackbar.LENGTH_LONG)
+                    .setAction("", null);
+
+            snackbar.show();
             new RequestTask(this, "Experiences").execute("http://gaspard-rosay.ch/cv/getExperience.php");
             new RequestTask(this, "Studies").execute("http://gaspard-rosay.ch/cv/getStudies.php");
         }
