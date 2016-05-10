@@ -11,10 +11,9 @@ J’ai finalement décidé en 2009 de faire de l’informatique mon métier, c�
 Au mois de juillet 2013, je suis arrivé au terme de ma formation initiale d'informaticien. 
 Désormais titulaire d'un CFC en informatique ainsi que d'une maturité professionnelle technique, j'ai bien l'intention de continuer à améliorer mes compétences, j'ai débuté en septembre 2014 une formation d'ingénieur en logiciel, à la HEIG-VD en parallèle de mon travail.
 
-En parallèle de mes études, j'ai eu l'occasion de me former de manière autodidacte à différentes technologies. C'est de cette manière que j'ai appris à comprendre et à maitriser le développement mobile sur les plateformes Windows Phone 7 et iOS.
+En parallèle de mes études, j'ai eu l'occasion de me former de manière autodidacte à différentes technologies. C'est de cette manière que j'ai appris à comprendre et à maitriser le développement mobile sur les plateformes les plus courantes.
 
 # ToDo
 * Version anglaise
 * Traductions des textes (Google Play, GitHub, ...)
-* Passage en Production
 * Lien sur le CV papier

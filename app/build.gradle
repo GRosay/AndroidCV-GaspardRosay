@@ -9,8 +9,8 @@ android {
         applicationId "ch.gaspard_rosay.rosaygaspard"
         minSdkVersion 22
         targetSdkVersion 23
-        versionCode 3
-        versionName "1.2a"
+        versionCode 4
+        versionName "1.0.0"
     }
     buildTypes {
         release {
