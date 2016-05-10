@@ -1,8 +1,10 @@
 package ch.gaspard_rosay.rosaygaspard;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -12,7 +14,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -36,7 +37,6 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Gestion des boutons
         FloatingActionButton mail = (FloatingActionButton) findViewById(R.id.mail);
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,13 +82,126 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        MainDatabaseHelper mDbHelper = new MainDatabaseHelper(this);
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
         boolean bNetwork = isNetworkAvailable();
-        if(!bNetwork){
+
+        // On test la disponibilité réseau
+        if(!bNetwork){ // Pas de réseau
             Snackbar snackbar = Snackbar
                     .make(findViewById(R.id.main_layout), "Aucune connexion réseau disponible!", Snackbar.LENGTH_INDEFINITE)
                     .setAction("", null);
 
             snackbar.show();
+
+            // Variables
+            LayoutInflater mInflater;
+            mInflater = LayoutInflater.from(getApplicationContext());
+            LinearLayout layout;
+            View childView;
+            String sDates, sDateFrom, sDateTo;
+            Long iDateFrom, iDateTo;
+            TextView tJobTitle, tJobSociety, tJobDates, tJobDescr;
+            Cursor c;
+            String sortOrder;
+
+            // On définit une projection pour la table à utiliser
+            String[] experience_proj = {
+                    MainDatabase.ExperienceEntry._ID,
+                    MainDatabase.ExperienceEntry.COLUMN_NAME_TITLE,
+                    MainDatabase.ExperienceEntry.COLUMN_NAME_DATES,
+                    MainDatabase.ExperienceEntry.COLUMN_NAME_SOCIETY,
+                    MainDatabase.ExperienceEntry.COLUMN_NAME_DESCR
+            };
+            sortOrder =
+                    MainDatabase.ExperienceEntry._ID + " ASC";
+
+            c = db.query(
+                    MainDatabase.ExperienceEntry.TABLE_NAME,  // The table to query
+                    experience_proj,                               // The columns to return
+                    null,                                     // The columns for the WHERE clause
+                    null,                                    // The values for the WHERE clause
+                    null,                                     // don't group the rows
+                    null,                                     // don't filter by row groups
+                    sortOrder                                 // The sort order
+            );
+            layout = (LinearLayout) this.findViewById(R.id.Experiences);
+
+            try {
+                while (c.moveToNext()) {
+
+                    sDates = c.getString(c.getColumnIndexOrThrow(MainDatabase.StudiesEntry.COLUMN_NAME_DATES));
+
+                    // JobInfo
+                    childView = mInflater.inflate(R.layout.job_card, null);
+
+                    tJobTitle = (TextView) childView.findViewById(R.id.cardJobTitle);
+                    tJobTitle.setText(c.getString(c.getColumnIndexOrThrow(MainDatabase.ExperienceEntry.COLUMN_NAME_TITLE)));
+
+                    tJobSociety = (TextView) childView.findViewById(R.id.cardJobSociety);
+                    tJobSociety.setText(c.getString(c.getColumnIndexOrThrow(MainDatabase.ExperienceEntry.COLUMN_NAME_SOCIETY)));
+
+                    tJobDates = (TextView) childView.findViewById(R.id.cardJobDates);
+                    tJobDates.setText(sDates);
+
+                    tJobDescr = (TextView) childView.findViewById(R.id.cardJobDescr);
+                    tJobDescr.setText(c.getString(c.getColumnIndexOrThrow(MainDatabase.ExperienceEntry.COLUMN_NAME_DESCR)));
+
+                    layout.addView(childView);
+                }
+            } finally {
+                c.close();
+            }
+
+            String[] studies_proj = {
+                    MainDatabase.StudiesEntry._ID,
+                    MainDatabase.StudiesEntry.COLUMN_NAME_DIPLOMA,
+                    MainDatabase.StudiesEntry.COLUMN_NAME_DATES,
+                    MainDatabase.StudiesEntry.COLUMN_NAME_SCHOOL,
+                    MainDatabase.StudiesEntry.COLUMN_NAME_DESCR
+            };
+            sortOrder =
+                    MainDatabase.StudiesEntry._ID + " ASC";
+
+            c = db.query(
+                    MainDatabase.StudiesEntry.TABLE_NAME,  // The table to query
+                    studies_proj,                               // The columns to return
+                    null,                                     // The columns for the WHERE clause
+                    null,                                    // The values for the WHERE clause
+                    null,                                     // don't group the rows
+                    null,                                     // don't filter by row groups
+                    sortOrder                                 // The sort order
+            );
+            layout = (LinearLayout) this.findViewById(R.id.Studies);
+
+            try {
+                while (c.moveToNext()) {
+
+                    sDates = c.getString(c.getColumnIndexOrThrow(MainDatabase.StudiesEntry.COLUMN_NAME_DATES));
+
+                    // JobInfo
+                    childView = mInflater.inflate(R.layout.job_card, null);
+
+                    tJobTitle = (TextView) childView.findViewById(R.id.cardJobTitle);
+                    tJobTitle.setText(c.getString(c.getColumnIndexOrThrow(MainDatabase.StudiesEntry.COLUMN_NAME_DIPLOMA)));
+
+                    tJobSociety = (TextView) childView.findViewById(R.id.cardJobSociety);
+                    tJobSociety.setText(c.getString(c.getColumnIndexOrThrow(MainDatabase.StudiesEntry.COLUMN_NAME_SCHOOL)));
+
+                    tJobDates = (TextView) childView.findViewById(R.id.cardJobDates);
+                    tJobDates.setText(sDates);
+
+                    tJobDescr = (TextView) childView.findViewById(R.id.cardJobDescr);
+                    tJobDescr.setText(c.getString(c.getColumnIndexOrThrow(MainDatabase.StudiesEntry.COLUMN_NAME_DESCR)));
+
+                    layout.addView(childView);
+                }
+            } finally {
+                c.close();
+            }
+
         }
         else if(savedInstanceState == null){
             Snackbar snackbar = Snackbar
@@ -95,8 +209,8 @@ public class MainActivity extends AppCompatActivity {
                     .setAction("", null);
 
             snackbar.show();
-            new RequestTask(this, "Experiences").execute("http://gaspard-rosay.ch/cv/getExperience.php");
-            new RequestTask(this, "Studies").execute("http://gaspard-rosay.ch/cv/getStudies.php");
+            new RequestTask(this, db, "Experiences").execute("http://gaspard-rosay.ch/cv/getExperience.php");
+            new RequestTask(this, db, "Studies").execute("http://gaspard-rosay.ch/cv/getStudies.php");
         }
 
     }
@@ -122,6 +236,33 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private String getDateString(String sDateFrom, String sDateTo){
+        String sDates;
+        Long lDateFrom, lDateTo;
+        SimpleDateFormat f = new SimpleDateFormat("MMM yyyy");
+        Calendar cDateFrom = Calendar.getInstance(), cDateTo = Calendar.getInstance();
+
+        try {
+            lDateFrom = Long.parseLong(sDateFrom);
+        } catch(NumberFormatException nfe) {
+            lDateFrom = 0L;
+        }
+        cDateFrom.setTimeInMillis(lDateFrom*1000);
+        sDateFrom = f.format(cDateFrom.getTime());
+
+        try {
+            lDateTo = Long.parseLong(sDateTo);
+        } catch(NumberFormatException nfe) {
+            lDateTo = 0L;
+        }
+        cDateTo.setTimeInMillis(lDateTo*1000);
+        sDateTo = f.format(cDateTo.getTime());
+
+        sDates = "De " + sDateFrom + (lDateTo == 0 ? " à aujourd'hui" : " à " + sDateTo);
+
+        return sDates;
+    }
+
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -132,8 +273,10 @@ public class MainActivity extends AppCompatActivity {
     class RequestTask extends AsyncTask<String, String, String> {
         private WeakReference<MainActivity> mActivity;
         private String sChoice;
-        public RequestTask(MainActivity activity, String Choice) {
+        private SQLiteDatabase db;
+        public RequestTask(MainActivity activity, SQLiteDatabase mDb, String Choice) {
             mActivity = new WeakReference<MainActivity>(activity);
+            db = mDb;
             sChoice = Choice;
         }
 
@@ -178,9 +321,8 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout layout;
                 View childView;
                 String sDates, sDateFrom, sDateTo;
-                Long iDateFrom, iDateTo;
-                SimpleDateFormat f = new SimpleDateFormat("MMM yyyy");
-                Calendar cDateFrom = Calendar.getInstance(), cDateTo = Calendar.getInstance();
+                ContentValues values;
+
 
                 // On traite le JSON !! {} = OBJET JSON et [] = TABLEAU JSON. Dans notre cas,
                 // le format est : {array[{},{},{}]}
@@ -189,8 +331,12 @@ public class MainActivity extends AppCompatActivity {
                 // On récupère le tableau "array"
                 JSONArray jsArray = jsonObject.getJSONArray("array");
 
+
                 switch (sChoice) {
                     case "Experiences":
+
+                        db.execSQL("delete from "+ MainDatabase.ExperienceEntry.TABLE_NAME);
+
                         layout = (LinearLayout) activity.findViewById(R.id.Experiences);
 
                         TextView tJobTitle, tJobSociety, tJobDates, tJobDescr;
@@ -200,26 +346,25 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject tempJson = jsArray.getJSONObject(i);
 
                             sDateFrom = (String) tempJson.get("date_from");
-                            try {
-                                iDateFrom = Long.parseLong(sDateFrom);
-                            } catch(NumberFormatException nfe) {
-                                iDateFrom = 0L;
-                            }
-                            cDateFrom.setTimeInMillis(iDateFrom*1000);
-                            Log.d("DateFrom: ", ""+iDateFrom);
-                            sDateFrom = f.format(cDateFrom.getTime());
-
                             sDateTo = (String) tempJson.get("date_to");
-                            try {
-                                iDateTo = Long.parseLong(sDateTo);
-                            } catch(NumberFormatException nfe) {
-                                iDateTo = 0L;
-                            }
-                            cDateTo.setTimeInMillis(iDateTo*1000);
-                            Log.d("DateTo: ", ""+iDateTo);
-                            sDateTo = f.format(cDateTo.getTime());
 
-                            sDates = "De " + sDateFrom + (iDateTo == 0 ? " à aujourd'hui" : " au " + sDateTo);
+                            sDates = getDateString(sDateFrom, sDateTo);
+
+                            // Ajout dans la DB interne
+                            // On crée un nouveau jeu de données
+                            values = new ContentValues();
+                            values.put(MainDatabase.ExperienceEntry.COLUMN_NAME_TITLE, (String) tempJson.get("title"));
+                            values.put(MainDatabase.ExperienceEntry.COLUMN_NAME_DATES, sDates);
+                            values.put(MainDatabase.ExperienceEntry.COLUMN_NAME_SOCIETY, (String) tempJson.get("society"));
+                            values.put(MainDatabase.ExperienceEntry.COLUMN_NAME_DESCR, (String) tempJson.get("description"));
+
+
+                            // On insère la nouvelle ligne
+                            db.insert(
+                                MainDatabase.ExperienceEntry.TABLE_NAME,
+                                null, // auto-id
+                                values);
+
 
                             // JobInfo
                             childView = mInflater.inflate(R.layout.job_card, null);
@@ -241,33 +386,34 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
                     case "Studies":
+                        db.execSQL("delete from "+ MainDatabase.StudiesEntry.TABLE_NAME);
                         layout = (LinearLayout) activity.findViewById(R.id.Studies);
                         TextView tStudiesDiploma, tStudiesSchool, tSudiesDates, tStudiesDescr;
 
                         for (int i = 0; i < jsArray.length(); i++) {
                             JSONObject tempJson = jsArray.getJSONObject(i);
 
+
                             sDateFrom = (String) tempJson.get("date_from");
-                            try {
-                                iDateFrom = Long.parseLong(sDateFrom);
-                            } catch (NumberFormatException nfe) {
-                                iDateFrom = 0L;
-                            }
-                            cDateFrom.setTimeInMillis(iDateFrom * 1000);
-                            Log.d("DateFrom: ", "" + iDateFrom);
-                            sDateFrom = f.format(cDateFrom.getTime());
-
                             sDateTo = (String) tempJson.get("date_to");
-                            try {
-                                iDateTo = Long.parseLong(sDateTo);
-                            } catch (NumberFormatException nfe) {
-                                iDateTo = 0L;
-                            }
-                            cDateTo.setTimeInMillis(iDateTo * 1000);
-                            Log.d("DateTo: ", "" + iDateTo);
-                            sDateTo = f.format(cDateTo.getTime());
 
-                            sDates = "De " + sDateFrom + (iDateTo == 0 ? " à aujourd'hui" : " au " + sDateTo);
+                            sDates = getDateString(sDateFrom, sDateTo);
+
+                            // Ajout dans la DB interne
+                            // On crée un nouveau jeu de données
+                            values = new ContentValues();
+                            values.put(MainDatabase.StudiesEntry.COLUMN_NAME_DIPLOMA, (String) tempJson.get("diploma"));
+                            values.put(MainDatabase.StudiesEntry.COLUMN_NAME_DATES, sDates);
+                            values.put(MainDatabase.StudiesEntry.COLUMN_NAME_SCHOOL, (String) tempJson.get("school"));
+                            values.put(MainDatabase.StudiesEntry.COLUMN_NAME_DESCR, (String) tempJson.get("description"));
+
+
+                            // On insère la nouvelle ligne
+                            db.insert(
+                                    MainDatabase.StudiesEntry.TABLE_NAME,
+                                    null, // auto-id
+                                    values);
+
 
                             // JobInfo
                             childView = mInflater.inflate(R.layout.studies_card, null);
