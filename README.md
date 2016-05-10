@@ -18,5 +18,3 @@ En parallèle de mes études, j'ai eu l'occasion de me former de manière autodi
 * Traductions des textes (Google Play, GitHub, ...)
 * Passage en Production
 * Lien sur le CV papier
-* Tester le réseau
-* Sauvegarder les données en local
