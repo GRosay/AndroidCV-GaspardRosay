@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
             );
             layout = (LinearLayout) this.findViewById(R.id.Experiences);
 
+            int i = 0;
+
             try {
                 while (c.moveToNext()) {
 
@@ -140,6 +142,13 @@ public class MainActivity extends AppCompatActivity {
                     tJobTitle = (TextView) childView.findViewById(R.id.cardJobTitle);
                     tJobTitle.setText(c.getString(c.getColumnIndexOrThrow(MainDatabase.ExperienceEntry.COLUMN_NAME_TITLE)));
 
+
+                    // On remplace le titre par le titre du poste actuel/dernier poste
+                    if(i == 0){
+                        TextView tProfilTitle = (TextView) this.findViewById(R.id.profile_title);
+                        tProfilTitle.setText(c.getString(c.getColumnIndexOrThrow(MainDatabase.ExperienceEntry.COLUMN_NAME_TITLE)));
+                    }
+
                     tJobSociety = (TextView) childView.findViewById(R.id.cardJobSociety);
                     tJobSociety.setText(c.getString(c.getColumnIndexOrThrow(MainDatabase.ExperienceEntry.COLUMN_NAME_SOCIETY)));
 
@@ -150,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                     tJobDescr.setText(c.getString(c.getColumnIndexOrThrow(MainDatabase.ExperienceEntry.COLUMN_NAME_DESCR)));
 
                     layout.addView(childView);
+                    i++;
                 }
             } finally {
                 c.close();
@@ -358,16 +368,22 @@ public class MainActivity extends AppCompatActivity {
                             values.put(MainDatabase.ExperienceEntry.COLUMN_NAME_SOCIETY, (String) tempJson.get("society"));
                             values.put(MainDatabase.ExperienceEntry.COLUMN_NAME_DESCR, (String) tempJson.get("description"));
 
-
                             // On insère la nouvelle ligne
                             db.insert(
                                 MainDatabase.ExperienceEntry.TABLE_NAME,
                                 null, // auto-id
                                 values);
 
+                            // On remplace le titre par le titre du poste actuel/dernier poste
+                            if(i == 0){
+                                TextView tProfilTitle = (TextView) activity.findViewById(R.id.profile_title);
+                                tProfilTitle.setText((String) tempJson.get("title"));
+                            }
+
 
                             // JobInfo
                             childView = mInflater.inflate(R.layout.job_card, null);
+
 
                             tJobTitle = (TextView) childView.findViewById(R.id.cardJobTitle);
                             tJobTitle.setText((String) tempJson.get("title"));

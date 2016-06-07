@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Rosay Gaspard</string>
 
-    <string name="global_title">Développeur web</string>
+    <string name="global_title"></string>
 
     <!-- Objectifs -->
     <string name="string_objectivetitle">Objectif</string>
